@@ -1,0 +1,22 @@
+entity Project {
+	name String
+}
+entity Week {
+	number Integer
+    monday	Integer
+	tuesday	Integer
+	wednesday	Integer
+	thursday	Integer
+	friday	Integer
+	saturday	Integer
+	sunday Integer
+}
+
+relationship ManyToOne {
+	Week{user(login)} to User,
+    Week{project(name)} to Project
+}
+
+relationship OneToOne {
+	Project to User
+}
