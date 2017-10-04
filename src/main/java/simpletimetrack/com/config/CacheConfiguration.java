@@ -40,6 +40,9 @@ public class CacheConfiguration {
             cm.createCache(simpletimetrack.com.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(simpletimetrack.com.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(simpletimetrack.com.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(simpletimetrack.com.domain.Project.class.getName(), jcacheConfiguration);
+            cm.createCache(simpletimetrack.com.domain.Project.class.getName() + ".users", jcacheConfiguration);
+            cm.createCache(simpletimetrack.com.domain.Week.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

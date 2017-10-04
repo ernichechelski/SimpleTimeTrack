@@ -1,4 +1,20 @@
-# SimpleTimeTrack
+# SimpleTimeTrack 🕐🕡
+
+
+## TODO:
+- Only Admin can manipulate projects. 😎
+- Auto number of week placeholder 🙄
+- User in week can only add yourself. 🙄
+- Admin only can add users (no registration from outside). 😡
+- Monthly raport of user (Calendar view). 📅🗓
+- Summary raport of user 📈📊
+- Homepage 👋
+- Changes in style(Find another bootstrap theme).😌
+- Create changelog file.🤠
+- Maybe something else? 🤔
+
+## Note
+
 This application was generated using JHipster 4.5.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.5.2](https://jhipster.github.io/documentation-archive/v4.5.2).
 
 ## Development
