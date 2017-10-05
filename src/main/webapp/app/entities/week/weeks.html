@@ -1,0 +1,78 @@
+<div>
+    <h2>Weeks</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="week.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Week
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Number</span></th>
+                    <th><span>Monday</span></th>
+                    <th><span>Tuesday</span></th>
+                    <th><span>Wednesday</span></th>
+                    <th><span>Thursday</span></th>
+                    <th><span>Friday</span></th>
+                    <th><span>Saturday</span></th>
+                    <th><span>Sunday</span></th>
+                    <th><span>User</span></th>
+                    <th><span>Project</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="week in vm.weeks track by week.id">
+                    <td><a ui-sref="week-detail({id:week.id})">{{week.id}}</a></td>
+                    <td>{{week.number}}</td>
+                    <td>{{week.monday}}</td>
+                    <td>{{week.tuesday}}</td>
+                    <td>{{week.wednesday}}</td>
+                    <td>{{week.thursday}}</td>
+                    <td>{{week.friday}}</td>
+                    <td>{{week.saturday}}</td>
+                    <td>{{week.sunday}}</td>
+                    <td>
+                        {{week.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="project-detail({id:week.project.id})">{{week.project.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="week-detail({id:week.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="week.edit({id:week.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="week.delete({id:week.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

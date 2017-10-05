@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "number",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "monday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tuesday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "wednesday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "thursday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "friday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "saturday",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sunday",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171004132341",
+    "entityTableName": "week",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span>Week</span> {{vm.week.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Number</span></dt>
+        <dd>
+            <span>{{vm.week.number}}</span>
+        </dd>
+        <dt><span>Monday</span></dt>
+        <dd>
+            <span>{{vm.week.monday}}</span>
+        </dd>
+        <dt><span>Tuesday</span></dt>
+        <dd>
+            <span>{{vm.week.tuesday}}</span>
+        </dd>
+        <dt><span>Wednesday</span></dt>
+        <dd>
+            <span>{{vm.week.wednesday}}</span>
+        </dd>
+        <dt><span>Thursday</span></dt>
+        <dd>
+            <span>{{vm.week.thursday}}</span>
+        </dd>
+        <dt><span>Friday</span></dt>
+        <dd>
+            <span>{{vm.week.friday}}</span>
+        </dd>
+        <dt><span>Saturday</span></dt>
+        <dd>
+            <span>{{vm.week.saturday}}</span>
+        </dd>
+        <dt><span>Sunday</span></dt>
+        <dd>
+            <span>{{vm.week.sunday}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.week.user.login}}
+        </dd>
+        <dt><span>Project</span></dt>
+        <dd>
+            <a ui-sref="project-detail({id:vm.week.project.id})">{{vm.week.project.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="week-detail.edit({id:vm.week.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
