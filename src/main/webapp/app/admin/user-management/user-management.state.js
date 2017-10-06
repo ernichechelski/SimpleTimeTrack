@@ -110,6 +110,21 @@
                 }
             }
         })
+         .state('user-management-raport', {
+                    parent: 'user-management',
+                    url: '/{login}/raport',
+                    data: {
+                        authorities: ['ROLE_ADMIN'],
+                        pageTitle: 'SimpleTimeTrack'
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'app/admin/user-management/user-management-raport.html',
+                            controller: 'UserManagementRaportController',
+                            controllerAs: 'vm'
+                        }
+                    }
+                })
         .state('user-management.delete', {
             url: '/{login}/delete',
             data: {
