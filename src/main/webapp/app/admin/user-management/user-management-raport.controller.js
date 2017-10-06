@@ -7,7 +7,7 @@
 
     UserManagementRaportController.$inject = ['$stateParams', 'User'];
 
-    function UserManagementRaportController($stateParams, User) {
+    function UserManagementRaportController($stateParams, User,calendarConfig,moment, alert) {
         var vm = this;
 
 
@@ -25,19 +25,15 @@
         vm.user = {};
 
 
-        //Calendar config
+
+        vm.exampleStartDate = new Date();
+        vm.exampleStartDate.setHours(12,0);
+        vm.exampleEndDate = new Date();
+        vm.exampleEndDate.setHours(15,0);
+
+
         vm.calendarView = 'month';
         vm.viewDate = new Date()
-
-
-        //Example values
-        vm.exampleStartDate = new Date();
-        vm.exampleEndDate = new Date();
-        vm.exampleStartDate2 = new Date().setDate(vm.exampleStartDate.getDate() + 1);
-        vm.exampleEndDate2 = new Date().setDate(vm.exampleEndDate.getDate() + 1);
-
-
-
 
         //Static data, needs endpoint
         vm.events = [
@@ -56,16 +52,6 @@
                incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
                recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
                cssClass: 'a-css-class-name', //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-               allDay: true // set to true to display the event as an all day event on the day view
-             },
-             {
-               title: 'Worked 4 hours', // The title of the event
-               startsAt: vm.exampleStartDate2, // A javascript date object for when the event starts
-               endsAt: vm.exampleEndDate2, // Optional - a javascript date object for when the event ends
-               hours:4,
-               draggable: false, //Allow an event to be dragged and dropped
-               resizable: false, //Allow an event to be resizable
-               incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
                allDay: true // set to true to display the event as an all day event on the day view
              }
            ];

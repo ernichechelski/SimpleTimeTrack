@@ -22,6 +22,7 @@
         <dd>{{vm.user.email}}</dd>
 
         <!-- Day cell template -->
+
         <script id="customMonthCell.html" type="text/ng-template">
             <div class="cal-month-day {{day.cssClass}}">
             <span
@@ -46,16 +47,40 @@
             </div>
         </script>
         <!-- Whole calendar -->
+        <h2 class="text-center">{{ vm.calendarTitle }}</h2>
         <mwl-calendar
           view="vm.calendarView"
           on-timespan-click=""
           view-date="vm.viewDate"
           events="vm.events"
-          view-title="calendarTitle"
+          view-title="vm.calendarTitle"
           cell-auto-open-disabled="true"
           custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}"
           displayAllMonthEvents = "true">
         </mwl-calendar>
+        <br>
+        <button
+            class="btn btn-primary"
+            mwl-date-modifier
+            date="vm.viewDate"
+            decrement="vm.calendarView">
+            Previous
+        </button>
+        <button
+            class="btn btn-default"
+            mwl-date-modifier
+            date="vm.viewDate"
+            set-to-today>
+            Today
+        </button>
+
+        <button
+            class="btn btn-primary"
+            mwl-date-modifier
+            date="vm.viewDate"
+            increment="vm.calendarView">
+            Next
+        </button>
     </dl>
     <button type="submit"
             ui-sref="user-management"
