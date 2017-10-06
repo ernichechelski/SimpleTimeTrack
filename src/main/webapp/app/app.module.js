@@ -10,6 +10,7 @@
             'ngCacheBuster',
             'ngFileUpload',
             'ui.bootstrap',
+            'mwl.calendar',
             'ui.bootstrap.datetimepicker',
             'ui.router',
             'infinite-scroll',

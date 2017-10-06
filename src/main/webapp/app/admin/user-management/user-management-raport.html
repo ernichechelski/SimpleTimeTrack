@@ -2,6 +2,9 @@
     <h2>
         <span>User Raport</span> [<b>{{vm.user.login}}</b>]
     </h2>
+    <script type="text/ng-template" id="test.html">
+        Hello world
+    </script>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Login</span></dt>
         <dd>
@@ -17,10 +20,42 @@
         <dd>{{vm.user.lastName}}</dd>
         <dt><span>Email</span></dt>
         <dd>{{vm.user.email}}</dd>
-        <canvas id="line" class="chart chart-line" chart-data="data"
-                chart-labels="labels" chart-series="series" chart-options="options"
-                chart-dataset-override="datasetOverride" chart-click="onClick">
-        </canvas
+
+        <!-- Day cell template -->
+        <script id="customMonthCell.html" type="text/ng-template">
+            <div class="cal-month-day {{day.cssClass}}">
+            <span
+                class="pull-right"
+                data-cal-date
+                ng-click="vm.calendarCtrl.dateClicked(day.date)"
+                ng-bind="day.label">
+            </span>
+
+                <div  style="position: absolute;width: 100%;height: 100%; text-align:center;">
+
+                    {{day.label}}
+                    <div ng-show="day.events.sum('hours')>0" style="margin: 0 auto;" class="alert alert-success" role="alert">
+                        {{day.events.sum("hours")}} hours
+                    </div>
+                    <div ng-show="day.events.sum('hours')==0" class="alert alert-warning" role="alert">
+                       0 hours
+                    </div>
+                </div>
+
+
+            </div>
+        </script>
+        <!-- Whole calendar -->
+        <mwl-calendar
+          view="vm.calendarView"
+          on-timespan-click=""
+          view-date="vm.viewDate"
+          events="vm.events"
+          view-title="calendarTitle"
+          cell-auto-open-disabled="true"
+          custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}"
+          displayAllMonthEvents = "true">
+        </mwl-calendar>
     </dl>
     <button type="submit"
             ui-sref="user-management"
