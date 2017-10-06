@@ -16,6 +16,10 @@
     ],
     "fields": [
         {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "number",
             "fieldType": "Integer"
         },

@@ -95,6 +95,7 @@
                     resolve: {
                         entity: function () {
                             return {
+                                year: null,
                                 number: null,
                                 monday: null,
                                 tuesday: null,

@@ -1,9 +1,11 @@
 package simpletimetrack.com.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.springframework.security.access.annotation.Secured;
 import simpletimetrack.com.domain.Project;
 
 import simpletimetrack.com.repository.ProjectRepository;
+import simpletimetrack.com.security.AuthoritiesConstants;
 import simpletimetrack.com.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -43,6 +45,7 @@ public class ProjectResource {
      */
     @PostMapping("/projects")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Project> createProject(@RequestBody Project project) throws URISyntaxException {
         log.debug("REST request to save Project : {}", project);
         if (project.getId() != null) {
@@ -65,6 +68,7 @@ public class ProjectResource {
      */
     @PutMapping("/projects")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Project> updateProject(@RequestBody Project project) throws URISyntaxException {
         log.debug("REST request to update Project : {}", project);
         if (project.getId() == null) {
@@ -110,6 +114,7 @@ public class ProjectResource {
      */
     @DeleteMapping("/projects/{id}")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         log.debug("REST request to delete Project : {}", id);
         projectRepository.delete(id);

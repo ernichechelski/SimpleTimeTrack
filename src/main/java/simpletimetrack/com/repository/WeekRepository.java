@@ -16,4 +16,6 @@ public interface WeekRepository extends JpaRepository<Week,Long> {
     @Query("select week from Week week where week.user.login = ?#{principal.username}")
     List<Week> findByUserIsCurrentUser();
 
+    @Override
+    long count();
 }

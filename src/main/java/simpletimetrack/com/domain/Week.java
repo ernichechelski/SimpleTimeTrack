@@ -21,6 +21,9 @@ public class Week implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "jhi_year")
+    private Integer year;
+
     @Column(name = "jhi_number")
     private Integer number;
 
@@ -57,6 +60,19 @@ public class Week implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public Week year(Integer year) {
+        this.year = year;
+        return this;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public Integer getNumber() {
@@ -213,6 +229,7 @@ public class Week implements Serializable {
     public String toString() {
         return "Week{" +
             "id=" + getId() +
+            ", year='" + getYear() + "'" +
             ", number='" + getNumber() + "'" +
             ", monday='" + getMonday() + "'" +
             ", tuesday='" + getTuesday() + "'" +

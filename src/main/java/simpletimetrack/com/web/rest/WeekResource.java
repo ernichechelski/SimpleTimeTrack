@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import simpletimetrack.com.domain.Week;
 
 import simpletimetrack.com.repository.WeekRepository;
+import simpletimetrack.com.security.AuthoritiesConstants;
+import simpletimetrack.com.security.SecurityUtils;
 import simpletimetrack.com.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -48,6 +50,9 @@ public class WeekResource {
         if (week.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new week cannot already have an ID")).body(null);
         }
+        if(!week.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()) && !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new week cannot be assigned to someone else")).body(null);
+        }
         Week result = weekRepository.save(week);
         return ResponseEntity.created(new URI("/api/weeks/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -70,6 +75,9 @@ public class WeekResource {
         if (week.getId() == null) {
             return createWeek(week);
         }
+        if(!week.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()) && !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new week cannot be assigned to someone else")).body(null);
+        }
         Week result = weekRepository.save(week);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, week.getId().toString()))
@@ -85,7 +93,15 @@ public class WeekResource {
     @Timed
     public List<Week> getAllWeeks() {
         log.debug("REST request to get all Weeks");
-        return weekRepository.findAll();
+
+        List<Week> weeks = null;
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            weeks = weekRepository.findAll();
+        }
+        else {
+            weeks = weekRepository.findByUserIsCurrentUser();
+        }
+        return weeks;
     }
 
     /**
@@ -112,7 +128,12 @@ public class WeekResource {
     @Timed
     public ResponseEntity<Void> deleteWeek(@PathVariable Long id) {
         log.debug("REST request to delete Week : {}", id);
+        Week week = weekRepository.findOne(id);
+        if(!week.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()) && !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new week cannot be assigned to someone else")).body(null);
+        }
         weekRepository.delete(id);
+
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

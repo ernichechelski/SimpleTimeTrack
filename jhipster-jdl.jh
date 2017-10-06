@@ -2,6 +2,7 @@ entity Project {
 	name String
 }
 entity Week {
+	year Integer,
 	number Integer,
     monday	Integer,
 	tuesday	Integer,

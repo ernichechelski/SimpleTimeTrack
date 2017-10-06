@@ -37,6 +37,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SimpleTimeTrackApp.class)
 public class WeekResourceIntTest {
 
+    private static final Integer DEFAULT_YEAR = 1;
+    private static final Integer UPDATED_YEAR = 2;
+
     private static final Integer DEFAULT_NUMBER = 1;
     private static final Integer UPDATED_NUMBER = 2;
 
@@ -98,6 +101,7 @@ public class WeekResourceIntTest {
      */
     public static Week createEntity(EntityManager em) {
         Week week = new Week()
+            .year(DEFAULT_YEAR)
             .number(DEFAULT_NUMBER)
             .monday(DEFAULT_MONDAY)
             .tuesday(DEFAULT_TUESDAY)
@@ -129,6 +133,7 @@ public class WeekResourceIntTest {
         List<Week> weekList = weekRepository.findAll();
         assertThat(weekList).hasSize(databaseSizeBeforeCreate + 1);
         Week testWeek = weekList.get(weekList.size() - 1);
+        assertThat(testWeek.getYear()).isEqualTo(DEFAULT_YEAR);
         assertThat(testWeek.getNumber()).isEqualTo(DEFAULT_NUMBER);
         assertThat(testWeek.getMonday()).isEqualTo(DEFAULT_MONDAY);
         assertThat(testWeek.getTuesday()).isEqualTo(DEFAULT_TUESDAY);
@@ -169,6 +174,7 @@ public class WeekResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(week.getId().intValue())))
+            .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
             .andExpect(jsonPath("$.[*].number").value(hasItem(DEFAULT_NUMBER)))
             .andExpect(jsonPath("$.[*].monday").value(hasItem(DEFAULT_MONDAY)))
             .andExpect(jsonPath("$.[*].tuesday").value(hasItem(DEFAULT_TUESDAY)))
@@ -190,6 +196,7 @@ public class WeekResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(week.getId().intValue()))
+            .andExpect(jsonPath("$.year").value(DEFAULT_YEAR))
             .andExpect(jsonPath("$.number").value(DEFAULT_NUMBER))
             .andExpect(jsonPath("$.monday").value(DEFAULT_MONDAY))
             .andExpect(jsonPath("$.tuesday").value(DEFAULT_TUESDAY))
@@ -218,6 +225,7 @@ public class WeekResourceIntTest {
         // Update the week
         Week updatedWeek = weekRepository.findOne(week.getId());
         updatedWeek
+            .year(UPDATED_YEAR)
             .number(UPDATED_NUMBER)
             .monday(UPDATED_MONDAY)
             .tuesday(UPDATED_TUESDAY)
@@ -236,6 +244,7 @@ public class WeekResourceIntTest {
         List<Week> weekList = weekRepository.findAll();
         assertThat(weekList).hasSize(databaseSizeBeforeUpdate);
         Week testWeek = weekList.get(weekList.size() - 1);
+        assertThat(testWeek.getYear()).isEqualTo(UPDATED_YEAR);
         assertThat(testWeek.getNumber()).isEqualTo(UPDATED_NUMBER);
         assertThat(testWeek.getMonday()).isEqualTo(UPDATED_MONDAY);
         assertThat(testWeek.getTuesday()).isEqualTo(UPDATED_TUESDAY);

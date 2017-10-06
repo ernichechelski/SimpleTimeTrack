@@ -19,6 +19,7 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
+                    <th><span>Year</span></th>
                     <th><span>Number</span></th>
                     <th><span>Monday</span></th>
                     <th><span>Tuesday</span></th>
@@ -35,6 +36,7 @@
             <tbody>
                 <tr ng-repeat="week in vm.weeks track by week.id">
                     <td><a ui-sref="week-detail({id:week.id})">{{week.id}}</a></td>
+                    <td>{{week.year}}</td>
                     <td>{{week.number}}</td>
                     <td>{{week.monday}}</td>
                     <td>{{week.tuesday}}</td>
