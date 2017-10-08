@@ -3,6 +3,7 @@ package simpletimetrack.com.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import simpletimetrack.com.domain.Week;
 
+import simpletimetrack.com.repository.UserRepository;
 import simpletimetrack.com.repository.WeekRepository;
 import simpletimetrack.com.security.AuthoritiesConstants;
 import simpletimetrack.com.security.SecurityUtils;
@@ -102,6 +103,7 @@ public class WeekResource {
         }
         return weeks;
     }
+
 
     /**
      * GET  /weeks/:id : get the "id" week.

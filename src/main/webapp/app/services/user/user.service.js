@@ -17,6 +17,15 @@
                     return data;
                 }
             },
+            'getWeeks': {
+                isArray: true,
+                method: 'GET',
+                url:'api/users/:login/weeks',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    return data;
+                }
+            },
             'save': { method:'POST' },
             'update': { method:'PUT' },
             'delete':{ method:'DELETE'}
