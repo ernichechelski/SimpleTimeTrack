@@ -7,7 +7,7 @@
 - ✔ User in week can only add yourself. 🙄
 - ✔ Admin only can add users (no registration from outside). 😡
 - Fields validation
-- Monthly raport of user (Calendar view). 📅🗓
+- ✔ Monthly raport of user (Calendar view). 📅🗓
 - Summary raport of user 📈📊
 - Homepage 👋
 - Changes in style(Find another bootstrap theme).😌
