@@ -3,7 +3,9 @@ package simpletimetrack.com.web.rest;
 import simpletimetrack.com.config.Constants;
 import com.codahale.metrics.annotation.Timed;
 import simpletimetrack.com.domain.User;
+import simpletimetrack.com.domain.Week;
 import simpletimetrack.com.repository.UserRepository;
+import simpletimetrack.com.repository.WeekRepository;
 import simpletimetrack.com.security.AuthoritiesConstants;
 import simpletimetrack.com.service.MailService;
 import simpletimetrack.com.service.UserService;
@@ -63,13 +65,17 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
+    private final WeekRepository weekRepository;
+
     private final MailService mailService;
 
     private final UserService userService;
 
-    public UserResource(UserRepository userRepository, MailService mailService,
-            UserService userService) {
 
+
+    public UserResource(UserRepository userRepository,WeekRepository weekRepository, MailService mailService,
+            UserService userService) {
+        this.weekRepository = weekRepository;
         this.userRepository = userRepository;
         this.mailService = mailService;
         this.userService = userService;
@@ -181,6 +187,28 @@ public class UserResource {
                 .map(UserDTO::new));
     }
 
+
+    /**
+     * GET  /weeks : get all the user weeks.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of user weeks in body
+     */
+    @GetMapping("/users/{login:" + Constants.LOGIN_REGEX + "}/weeks")
+    @Timed
+    public List<Week> getAllUserWeeks(@PathVariable String login) {
+        log.debug("REST request to get all user Weeks");
+        Optional<User> user = userRepository.findOneByLogin(login);
+        List<Week> weeks = new ArrayList<>();
+        if(user.isPresent()){
+            User u = user.get();
+            weeks = weekRepository.findAll();
+            weeks.removeIf(week -> !week.getUser().equals(u));
+        }
+        else {
+            log.warn("There is no user with: "+login+" login");
+        }
+        return weeks;
+    }
     /**
      * DELETE /users/:login : delete the "login" User.
      *

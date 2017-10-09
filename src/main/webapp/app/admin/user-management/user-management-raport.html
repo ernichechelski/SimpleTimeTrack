@@ -46,18 +46,6 @@
 
             </div>
         </script>
-        <!-- Whole calendar -->
-        <h2 class="text-center">{{ vm.calendarTitle }}</h2>
-        <mwl-calendar
-          view="vm.calendarView"
-          on-timespan-click=""
-          view-date="vm.viewDate"
-          events="vm.events"
-          view-title="vm.calendarTitle"
-          cell-auto-open-disabled="true"
-          custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}"
-          displayAllMonthEvents = "true">
-        </mwl-calendar>
         <br>
         <button
             class="btn btn-primary"
@@ -81,6 +69,19 @@
             increment="vm.calendarView">
             Next
         </button>
+        <!-- Whole calendar -->
+        <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+        <mwl-calendar
+          view="vm.calendarView"
+          on-timespan-click=""
+          view-date="vm.viewDate"
+          events="vm.events"
+          view-title="vm.calendarTitle"
+          cell-auto-open-disabled="true"
+          custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}"
+          displayAllMonthEvents = "true">
+        </mwl-calendar>
+
     </dl>
     <button type="submit"
             ui-sref="user-management"
