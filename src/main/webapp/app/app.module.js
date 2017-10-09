@@ -11,6 +11,7 @@
             'ngFileUpload',
             'ui.bootstrap',
             'mwl.calendar',
+            'angularMoment',
             'ui.bootstrap.datetimepicker',
             'ui.router',
             'infinite-scroll',
