@@ -3,10 +3,11 @@
 
 ## TODO:
 - ✔ Only Admin can manipulate projects. 😎
-- Auto number of week placeholder 🙄 
+- Auto number of week placeholder (When user adds week, number of week has to be locked to current week) 🙄 
 - ✔ User in week can only add yourself. 🙄
 - ✔ Admin only can add users (no registration from outside). 😡
-- Fields validation
+- Fields validation (week cannot be more than 53, year must be set to current Year, week must be set to current week, user cant raport week to another project than it is assigned).
+- Create new week button must be named: "Raport current week".
 - ✔ Monthly raport of user (Calendar view). 📅🗓
 - Summary raport of user 📈📊
 - Homepage 👋
