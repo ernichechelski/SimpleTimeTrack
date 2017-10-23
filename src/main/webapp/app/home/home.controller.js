@@ -5,9 +5,9 @@
         .module('simpleTimeTrackApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$cookies','$cookieStore'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state, $cookies, $cookieStore) {
         var vm = this;
 
         vm.account = null;
@@ -19,11 +19,12 @@
         });
 
         getAccount();
-
+        
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
+                $cookieStore.put("user", vm.account.login);
             });
         }
         function register () {

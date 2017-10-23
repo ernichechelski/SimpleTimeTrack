@@ -15,55 +15,55 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_year">Year</label>
-            <input type="number" class="form-control" name="year" id="field_year"
+            <input type="number" class="form-control" name="year" id="field_year" 
                     ng-model="vm.week.year"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_number">Number</label>
-            <input type="number" class="form-control" name="number" id="field_number"
+            <input type="number" class="form-control" name="number" id="field_number" min="1" max="53" ng-min="1" ng-max="53"
                     ng-model="vm.week.number"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_monday">Monday</label>
-            <input type="number" class="form-control" name="monday" id="field_monday"
+            <input type="number" class="form-control" name="monday" id="field_monday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.monday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_tuesday">Tuesday</label>
-            <input type="number" class="form-control" name="tuesday" id="field_tuesday"
+            <input type="number" class="form-control" name="tuesday" id="field_tuesday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.tuesday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_wednesday">Wednesday</label>
-            <input type="number" class="form-control" name="wednesday" id="field_wednesday"
+            <input type="number" class="form-control" name="wednesday" id="field_wednesday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.wednesday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_thursday">Thursday</label>
-            <input type="number" class="form-control" name="thursday" id="field_thursday"
+            <input type="number" class="form-control" name="thursday" id="field_thursday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.thursday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_friday">Friday</label>
-            <input type="number" class="form-control" name="friday" id="field_friday"
+            <input type="number" class="form-control" name="friday" id="field_friday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.friday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_saturday">Saturday</label>
-            <input type="number" class="form-control" name="saturday" id="field_saturday"
+            <input type="number" class="form-control" name="saturday" id="field_saturday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.saturday"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_sunday">Sunday</label>
-            <input type="number" class="form-control" name="sunday" id="field_sunday"
+            <input type="number" class="form-control" name="sunday" id="field_sunday" min="0" max="24" ng-min="0" ng-max="24"
                     ng-model="vm.week.sunday"
                     />
         </div>
@@ -71,7 +71,7 @@
         <div class="form-group">
             <label for="field_user">User</label>
             <select class="form-control" id="field_user" name="user" ng-model="vm.week.user" ng-options="user as user.login for user in vm.users track by user.id">
-                <option value=""></option>
+                <option value="">{{vm.account}}</option>
             </select>
         </div>
         <div class="form-group">

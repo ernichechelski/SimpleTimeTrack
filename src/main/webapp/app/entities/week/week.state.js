@@ -115,6 +115,47 @@
                 });
             }]
         })
+        .state('week.current', {
+            parent: 'week',
+            url: '/current',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                Date.prototype.getWeek = function() {
+                      var onejan = new Date(this.getFullYear(),0,1);
+                      return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+                    }
+                var d = new Date();
+                $uibModal.open({
+                    templateUrl: 'app/entities/week/week-dialog.html',
+                    controller: 'WeekDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                year: d.getFullYear(),
+                                number: d.getWeek(),
+                                monday: null,
+                                tuesday: null,
+                                wednesday: null,
+                                thursday: null,
+                                friday: null,
+                                saturday: null,
+                                sunday: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('week', null, { reload: 'week' });
+                }, function() {
+                    $state.go('week');
+                });
+            }]
+        })
         .state('week.edit', {
             parent: 'week',
             url: '/{id}/edit',
