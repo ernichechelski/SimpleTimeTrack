@@ -1,0 +1,45 @@
+<div>
+    <h2>Project report: {{vm.project.name}}</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Employee</span></th>
+                    <th><span>Total time</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>  
+            <br/>
+                <tr ng-repeat="user in vm.project.users track by user.id">
+                        
+                    <td>{{user.id}}</td>
+                    <td>{{user.firstName}} {{user.lastName}}</td>
+                    <td>
+                        {{vm.calculateTime(user)}}
+                         
+                        <span ng-repeat="actual_user in vm.actualUsers[user.id] track by actual_user.weekId">
+                            Week number: {{actual_user.week}}   Time in week: {{actual_user.time}}{{$last ? '' : ', '}}<br/>
+                        </span>
+                        
+                    </td>
+                    
+                </tr>
+                 <td></td>
+                    <td></td>
+                    <td>
+                      Total time: {{vm.totalTime}}
+                    </td>
+                
+            </tbody>
+            
+        </table>
+    </div>
+</div>

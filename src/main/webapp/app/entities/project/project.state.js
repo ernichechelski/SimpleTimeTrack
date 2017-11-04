@@ -79,6 +79,72 @@
                 });
             }]
         })
+        .state('project-detail.report', {
+            parent: 'project-detail',
+            url: '/report',
+            data: {
+                authorities: ['ROLE_ADMIN']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                var d = new Date();
+                $uibModal.open({
+                    templateUrl: 'app/entities/project/project-dialog-report.html',
+                    controller: 'ProjectDialogReportController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                id: $stateParams.id,
+                                year: d.getFullYear()
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('project', null, { reload: 'project' });
+                }, function() {
+                    $state.go('project');
+                });
+            }]
+        })
+        .state('project-report', {
+            parent: 'project',
+            url: '/report/{id}/{year}/{start_week}/{stop_week}',
+            data: {
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'Report'
+            },
+            
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/project/project-report.html',
+                    controller: 'ProjectReportController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: ['$stateParams', 'Project', function($stateParams, Project) {
+                    return Project.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'report',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }],
+                params: ['$stateParams', function($stateParams) {
+                    var currentUsers = {
+                        id: 2
+                       
+                    };
+                    return currentUsers;
+                   // return {start_week: $stateParams.start_week};
+                }]
+            }
+        })
         .state('project.new', {
             parent: 'project',
             url: '/new',

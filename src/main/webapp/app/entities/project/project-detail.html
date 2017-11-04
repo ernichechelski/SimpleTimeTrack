@@ -11,7 +11,7 @@
         <dt><span>User</span></dt>
         <dd>
             <span ng-repeat="user in vm.project.users">
-                {{user.id}}{{$last ? '' : ', '}}
+                {{user.id}}: {{user.firstName}} {{user.lastName}}{{$last ? '' : ', '}}<br/>
             </span>
         </dd>
     </dl>
@@ -25,5 +25,8 @@
     <button type="button" ui-sref="project-detail.edit({id:vm.project.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down"> Edit</span>
+    </button>
+    <button type="button" ui-sref="project-detail.report()" class="btn btn-primary">
+        <span class="hidden-sm-down"> Report</span>
     </button>
 </div>

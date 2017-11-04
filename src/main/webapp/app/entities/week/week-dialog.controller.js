@@ -5,16 +5,34 @@
         .module('simpleTimeTrackApp')
         .controller('WeekDialogController', WeekDialogController);
 
-    WeekDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Week', 'User', 'Project'];
+    WeekDialogController.$inject = ['$timeout', 'Principal', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Week', 'User', 'Project'];
 
-    function WeekDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Week, User, Project) {
+    function WeekDialogController ($timeout, Principal, $scope, $stateParams, $uibModalInstance, entity, Week, User, Project) {
         var vm = this;
 
         vm.week = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.users = User.query();
+        vm.users = [];
         vm.projects = Project.query();
+        vm.isAuthenticated = null;
+        
+        getAccount();
+        
+        function getAccount() {
+            Principal.identity().then(function(account) {
+                vm.isAuthenticated = Principal.isAuthenticated;
+              
+              if ( $.inArray('ROLE_ADMIN', $(account.authorities)) > -1 ){
+                  vm.users = User.query();
+                
+            } else{
+                vm.users = [account];
+                }
+            });
+            
+            
+        }
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

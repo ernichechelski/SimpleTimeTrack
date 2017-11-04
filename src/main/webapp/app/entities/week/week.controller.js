@@ -11,7 +11,7 @@
 
         var vm = this;
         vm.weeks = [];
-        vm.account = $cookieStore.get("user");
+       
         
       
         
