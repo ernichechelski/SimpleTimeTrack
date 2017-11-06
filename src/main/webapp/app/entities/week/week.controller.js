@@ -14,11 +14,18 @@
         vm.isAdmin = false;
 
 
-         Principal.identity().then(function(account) {
-              if ( $.inArray('ROLE_ADMIN', $(account.authorities)) > -1 ){
-                  vm.isAdmin = true;
-              }
-         });
+        checkIfAdmin();
+
+        function checkIfAdmin() {
+            Principal.identity().then(function(account) {
+                if ( $.inArray('ROLE_ADMIN', $(account.authorities)) > -1 ){
+                    vm.isAdmin = true;
+                }
+            });
+        }
+
+
+
         loadAll();
 
         function loadAll() {

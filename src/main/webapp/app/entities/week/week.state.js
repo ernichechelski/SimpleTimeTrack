@@ -86,7 +86,7 @@
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-               
+
 
                 $uibModal.open({
                     templateUrl: 'app/entities/week/week-dialog.html',
