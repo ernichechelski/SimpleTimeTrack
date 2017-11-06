@@ -5,18 +5,22 @@
         .module('simpleTimeTrackApp')
         .controller('WeekController', WeekController);
 
-    WeekController.$inject = ['Week', '$cookies','$cookieStore'];
+    WeekController.$inject = ['Principal','Week', '$cookies','$cookieStore'];
 
-    function WeekController(Week, $cookies, $cookieStore) {
+    function WeekController(Principal,Week, $cookies, $cookieStore) {
 
         var vm = this;
         vm.weeks = [];
-       
-        
-      
-        
+        vm.isAdmin = false;
+
+
+         Principal.identity().then(function(account) {
+              if ( $.inArray('ROLE_ADMIN', $(account.authorities)) > -1 ){
+                  vm.isAdmin = true;
+              }
+         });
         loadAll();
-        
+
         function loadAll() {
             Week.query(function(result) {
                 vm.weeks = result;
