@@ -13,7 +13,6 @@
         vm.weeks = [];
         vm.isAdmin = false;
 
-
         checkIfAdmin();
 
         function checkIfAdmin() {
@@ -22,8 +21,6 @@
                     vm.isAdmin = true;
                 }
             });
-        }
-
 
 
         loadAll();
