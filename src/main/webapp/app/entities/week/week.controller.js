@@ -21,7 +21,7 @@
                     vm.isAdmin = true;
                 }
             });
-            }
+        }
 
 
         loadAll();

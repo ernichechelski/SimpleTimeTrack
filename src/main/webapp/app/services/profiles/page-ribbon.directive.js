@@ -9,7 +9,7 @@
 
     function pageRibbon(ProfileService, $rootScope) {
         var directive = {
-            replace : true,
+            replace : false,
             restrict : 'AE',
             template : '<div class="ribbon hidden"><a href="">{{ribbonEnv}}</a></div>',
             link : linkFunc
