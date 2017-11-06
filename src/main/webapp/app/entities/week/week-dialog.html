@@ -16,12 +16,12 @@
         <div class="form-group">
             <label class="control-label" for="field_year">Year</label>
             <input type="number" class="form-control" name="year" id="field_year" min="2000" max="2200" ng-min="2000" ng-max="2200"
-                    ng-model="vm.week.year"
+                    ng-disabled="!vm.isAdmin" ng-model="vm.week.year"
                     />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_number">Number</label>
-            <input type="number" class="form-control" disabled="true" name="number" id="field_number" min="1" max="53" ng-min="1" ng-max="53"
+            <input type="number" class="form-control" ng-disabled="!vm.isAdmin" name="number" id="field_number" min="1" max="53" ng-min="1" ng-max="53"
                     ng-model="vm.week.number"
                     />
         </div>

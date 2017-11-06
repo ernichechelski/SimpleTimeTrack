@@ -16,22 +16,24 @@
         vm.users = [];
         vm.projects = Project.query();
         vm.isAuthenticated = null;
-        
+        vm.isAdmin = false;
+
         getAccount();
-        
+
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.isAuthenticated = Principal.isAuthenticated;
-              
+
               if ( $.inArray('ROLE_ADMIN', $(account.authorities)) > -1 ){
+                  vm.isAdmin = true;
                   vm.users = User.query();
-                
+
             } else{
                 vm.users = [account];
                 }
             });
-            
-            
+
+
         }
 
         $timeout(function (){
