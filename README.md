@@ -1,5 +1,6 @@
 # SimpleTimeTrack 🕐🕡
 
+Web application which provides functionality to monitor employees working hours.
 
 ## TODO:
 - ✔ Only Admin can manipulate projects. 😎
@@ -12,8 +13,8 @@
 - ✔ Summary raport of project
 - Summary raport of user 📈📊
 - ✔ Homepage 👋
-- Changes in style (Find another bootstrap theme).😌
-- Create changelog file.🤠
+- ✔ Changes in style (Find another bootstrap theme).😌
+- ✔ Create changelog file.🤠
 - Maybe something else? 🤔
 
 ### New user workflow
